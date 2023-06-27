@@ -16,9 +16,14 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       cy.get('#lastName').type('Recouso')
       cy.get('#email').type('gabriel.recouso@gmail.com')
       cy.get('#open-text-area').type('Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.', { delay: 0 })
+      
+      cy.clock()
+      
       cy.contains('button[type="submit"]', 'Enviar').click()
-
+      
       cy.get('.success').should('be.visible')
+      cy.tick(3000)
+      cy.get('.success').should('not.be.visible')
     })
 
   // Teste 3
@@ -27,9 +32,17 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       cy.get('#lastName').type('Recouso')
       cy.get('#email').type('gabriel.recouso.gmail.com')
       cy.get('#open-text-area').type('Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.Testando 1, 2, 3.', { delay: 0 })
+      
+      
+      cy.clock()
       cy.contains('button[type="submit"]', 'Enviar').click()
-
       cy.get('.error').should('be.visible')
+      
+      cy.tick(3000)
+
+      cy.get('.error').should('not.be.visible')
+
+      
 
     })
   
@@ -48,9 +61,13 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       cy.get('#email').type('gabriel.recouso@gmail.com')      
       cy.get('#phone-checkbox').check()
       cy.get('#open-text-area').type('Testando 1, 2, 3.')
+      
+      
+      cy.clock()
       cy.contains('button[type="submit"]', 'Enviar').click()
-
       cy.get('.error').should('be.visible')
+      cy.tick(3000)      
+      cy.get('.error').should('not.be.visible')
   })
 
   // Teste 6
@@ -68,25 +85,35 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         .should('have.value', '13974054321')
         .clear().should('have.value', '')   
         
+        
+        cy.clock()
         cy.contains('button[type="submit"]', 'Enviar').click()
-
-      cy.get('.error').should('be.visible')
+        cy.get('.error').should('be.visible')
+        cy.tick(3000)      
+      cy.get('.error').should('not.be.visible')
      })
 
   // Teste 7
 
      it('exibe mensagem de erro ao submenter o formulário sem preencher os campos obrigatórios.', function(){
+      
+      
+      cy.clock()
+    
       cy.contains('button[type="submit"]', 'Enviar').click()
-
       cy.get('.error').should('be.visible')
+      cy.tick(3000)      
+      cy.get('.error').should('not.be.visible')
      })
 
   // Teste 8
 
      it('envia o formulário com sucesso usando um comando customizado', function(){
       cy.fillMandatoryFieldsAndSubmit()
-
-      cy.get('.success').should('be.visible')
+     
+       
+      cy.tick(3000)
+      cy.get('.success').should('not.be.visible')   
      })
 
   // Teste 9
