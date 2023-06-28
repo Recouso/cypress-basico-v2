@@ -250,7 +250,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
    // Teste 23
 
-  it.only('exibe o gato usando o .invoke', () => {
+  it('exibe o gato usando o .invoke', () => {
     cy.get('#cat')
       .should('not.be.visible')
       .invoke('show')
